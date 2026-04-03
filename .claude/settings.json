@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.store/claude-code-settings.json",
+  "sandbox": {
+    "enabled": true,
+    "autoAllowBashIfSandboxed": true,
+    "allowUnsandboxedCommands": false,
+    "excludedCommands": ["git", "docker", "eas"],
+    "network": {
+      "allowLocalBinding": true
+    }
+  },
+  "permissions": {
+    "allow": ["Bash(npm install *)", "Bash(npx expo *)", "Read"]
+  },
+  "env": {
+    "EXPO_DEBUG": "1"
+  }
+}
