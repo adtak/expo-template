@@ -43,9 +43,6 @@ pnpm format:check    # check formatting (CI)
 # Test
 pnpm test            # run Jest tests
 
-# Regenerate Expo Router typed routes
-# Run this after adding/removing/renaming route files in app/
-pnpm expo export --platform web
 ```
 
 ## Environment
