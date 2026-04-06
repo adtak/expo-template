@@ -76,7 +76,14 @@ echo "Updating app.json..."
 node -e "
 const fs = require('fs');
 const config = JSON.parse(fs.readFileSync('app.json', 'utf8'));
-const expo = config.expo;
+
+// Add schema field at the top if missing
+const schema = 'https://raw.githubusercontent.com/expo/expo/main/docs/public/static/schemas/unversioned/app-config-schema.json';
+const configWithSchema = config['\$schema']
+  ? config
+  : { '\$schema': schema, ...config };
+
+const expo = configWithSchema.expo;
 
 // Add iOS bundleIdentifier if missing
 if (!expo.ios) expo.ios = {};
@@ -103,7 +110,7 @@ if (!expo.extra.eas.projectId) {
   expo.extra.eas.projectId = '';
 }
 
-fs.writeFileSync('app.json', JSON.stringify(config, null, 2) + '\n');
+fs.writeFileSync('app.json', JSON.stringify(configWithSchema, null, 2) + '\n');
 "
 
 # ── Clean up boilerplate from create expo-app ─────────────────────────────
