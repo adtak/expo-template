@@ -1,62 +1,66 @@
 # expo-template
 
-Minimal Expo/React Native template with tooling pre-configured.
+Setup script that adds opinionated tooling on top of a fresh Expo project.
 
-## Stack
+## Philosophy
 
-- **Expo SDK 54** / React Native 0.81 / React 19
-- **TypeScript** (strict mode)
-- **Biome** (formatting + import sorting) + **ESLint** (linting)
-- **Jest** (testing)
-- **GitHub Actions** CI (lint, format, typecheck, test)
-- **Claude Code** skills & agents (issue planning, implementation, refactoring)
+`create expo-app` and `eas build:configure` handle the core scaffolding. This repo covers only what those tools don't: formatting, testing, CI, and AI-assisted development workflow.
 
-Experimental features enabled: **New Architecture**, **Typed Routes**, **React Compiler**
+If something can be initialized by an official Expo or EAS command, it stays out of this repo.
 
-## Getting Started
+## What's Included
 
-### 1. Create a new repository
+| Category | What | Details |
+|----------|------|---------|
+| Formatting | Biome | `biome check` for formatting + import sorting (ESLint handles linting) |
+| Testing | Jest + Testing Library | `jest-expo` preset with `@/` alias support |
+| CI | GitHub Actions | Lint, format check, typecheck, test on every PR |
+| Build | EAS Build | Run `eas build:configure` after setup — not managed by this repo |
+| AI | Claude Code | CLAUDE.md, agents, and skills for issue planning & implementation |
 
-Click **"Use this template"** on GitHub, or:
+## Quick Start
+
+### 1. Create a new Expo app
 
 ```bash
-gh repo create my-app --template adtak/expo-template --public --clone
-cd my-app
+pnpm create expo-app ~/repo/my-app
+cd ~/repo/my-app
 ```
 
-### 2. Update app identity
-
-Replace placeholder values with your app's info:
-
-**`app.json`**
-- `expo.name` — display name (e.g., `"MyApp"`)
-- `expo.slug` — URL-safe name (e.g., `"my-app"`)
-- `expo.scheme` — deep link scheme (e.g., `"my-app"`)
-- `expo.ios.bundleIdentifier` — iOS bundle ID (e.g., `"com.yourname.myapp"`)
-- `expo.extra.eas.projectId` — run `eas init` to generate
-
-**`package.json`**
-- `name` — package name (e.g., `"my-app"`)
-
-### 3. Install and run
+### 2. Run the setup script
 
 ```bash
-pnpm install
-pnpm expo start --ios
+~/repo/expo-template/setup.sh
 ```
 
-### 4. Set up EAS (optional)
+### 3. Update app identity
+
+Replace placeholder values in `app.json`:
+
+- `expo.name` — display name
+- `expo.slug` — URL-safe name
+- `expo.scheme` — deep link scheme
+- `expo.ios.bundleIdentifier` — iOS bundle ID (e.g., `com.yourname.myapp`)
+
+Then set up EAS:
 
 ```bash
-pnpm install -g eas-cli
-eas init
 eas build:configure
+```
+
+This generates `eas.json` with development, preview, and production build profiles.
+
+### 4. Verify
+
+```bash
+pnpm expo start
 ```
 
 ## Development
 
 ```bash
 pnpm expo start          # Start dev server
+pnpm go                  # Start dev server (Go mode)
 pnpm expo lint           # ESLint
 pnpm format              # Biome format (write)
 pnpm format:check        # Biome format (check)

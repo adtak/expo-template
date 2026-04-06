@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "sandbox": {
+    "enabled": false
+  },
+  "permissions": {
+    "allow": ["Bash(gh issue:*)", "WebSearch", "Bash(gh pr:*)", "Read"]
+  },
+  "env": {
+    "EXPO_DEBUG": "1"
+  }
+}
