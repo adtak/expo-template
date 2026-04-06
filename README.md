@@ -23,7 +23,7 @@ If something can be initialized by an official Expo or EAS command, it stays out
 ### 1. Create a new Expo app
 
 ```bash
-pnpm create expo-app ~/repo/my-app
+pnpm create expo-app@latest ~/repo/my-app
 cd ~/repo/my-app
 ```
 
