@@ -33,9 +33,10 @@ echo ""
 # ── Copy template files ────────────────────────────────────────────────────
 
 echo "Copying config files..."
-cp -r "$TEMPLATE_DIR/.claude" .claude
-cp -r "$TEMPLATE_DIR/.github" .github
-cp -r "$TEMPLATE_DIR/.vscode" .vscode
+mkdir -p .claude .github .vscode
+cp -r "$TEMPLATE_DIR/.claude/." .claude/
+cp -r "$TEMPLATE_DIR/.github/." .github/
+cp -r "$TEMPLATE_DIR/.vscode/." .vscode/
 cp "$TEMPLATE_DIR/.npmrc" .npmrc
 cp "$TEMPLATE_DIR/biome.json" biome.json
 cp "$TEMPLATE_DIR/jest.config.js" jest.config.js
@@ -105,12 +106,9 @@ if (!expo.extra.eas.projectId) {
 fs.writeFileSync('app.json', JSON.stringify(config, null, 2) + '\n');
 "
 
-# ── Clean up .gitignore ────────────────────────────────────────────────────
+# ── Clean up boilerplate from create expo-app ─────────────────────────────
 
-if [[ -f ".gitignore" ]]; then
-  # Remove app-example line (artifact from default template's reset-project)
-  sed -i '' '/^app-example$/d' .gitignore
-fi
+rm -rf app-example
 
 # ── Format existing code ───────────────────────────────────────────────────
 
