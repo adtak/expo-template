@@ -9,7 +9,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Expo/React Native app using Expo SDK 54, React 19, React Native 0.81, and TypeScript (strict mode). Package manager is **pnpm**.
+Expo/React Native app using TypeScript (strict mode). Package manager is **pnpm**.
 
 Key experimental features enabled in `app.json`:
 
