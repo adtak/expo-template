@@ -41,8 +41,13 @@ pnpm format          # format all files (write)
 pnpm format:check    # check formatting (CI)
 
 # Test
-pnpm test            # run Jest tests
+pnpm test                              # all tests
+pnpm test path/to/file.test.ts         # single file
+pnpm test -t "name pattern"            # filter by test name
+pnpm test --watch                      # watch mode
 
+# Type check (no script alias — invoke tsc directly)
+pnpm tsc --noEmit
 ```
 
 ## Environment
@@ -63,7 +68,7 @@ Routes live in `app/`. Directory structure maps directly to URL structure.
 ### Linting & Formatting
 
 - **ESLint** (`pnpm expo lint`) — Linting only. Kept for Expo-specific rules and React Compiler integration
-- **Biome** (`pnpm format`) — Formatting and import sorting via `biome check` (linter disabled in `biome.json`)
+- **Biome** (`pnpm format`) — Formatting and import sorting via `biome check` (linter disabled in `biome.json`). `pnpm format` also reorganizes imports — review the diff before committing
 - The two tools have fully separated roles with no conflicts
 
 ### Import Aliases
@@ -104,9 +109,10 @@ Technical enablement work (e.g., infrastructure setup) that has no direct user-f
 
 ### Before Creating a PR
 
-1. Run these checks locally — they also run in CI on every PR:
+1. Run these checks locally — they also run in CI on every PR (CI additionally runs `pnpm expo-doctor` first):
 
 ```bash
+pnpm expo-doctor       # Expo dependency/config sanity check
 pnpm expo lint         # ESLint
 pnpm format:check      # Biome format check
 pnpm tsc --noEmit      # TypeScript type check
