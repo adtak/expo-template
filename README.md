@@ -72,8 +72,7 @@ pnpm test                # Jest tests
 
 | Skill | Command | Description |
 |-------|---------|-------------|
-| Plan Issue | `/plan-issue <number>` | Create an implementation plan for a GitHub issue |
+| Plan Issue | `/plan-issue <number>` | Brainstorm an issue's spec (if unsettled) and append an implementation plan to the issue body |
 | Implement Issue | `/implement-issue <number>` | Implement a GitHub issue via agent |
 | Parallel Implement | `/agent-team-implement-issues <numbers>` | Implement multiple issues in parallel |
 | Plan Refactor | `/plan-refactor` | Analyze codebase and propose refactoring issues |
-| Init Kiro Steering | `/init-kiro-steering [doc-path]` | Generate Kiro steering documents |
