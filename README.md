@@ -70,9 +70,20 @@ pnpm test                # Jest tests
 
 ## Claude Code Skills
 
+### Command-invoked
+
 | Skill | Command | Description |
 |-------|---------|-------------|
 | Plan Issue | `/plan-issue <number>` | Brainstorm an issue's spec (if unsettled) and append an implementation plan to the issue body |
 | Implement Issue | `/implement-issue <number>` | Implement a GitHub issue via agent |
 | Parallel Implement | `/agent-team-implement-issues <numbers>` | Implement multiple issues in parallel |
 | Plan Refactor | `/plan-refactor` | Analyze codebase and propose refactoring issues |
+
+### Auto-triggered
+
+These skills activate automatically when the task matches; there is no command to run.
+
+| Skill | Triggers on | Description |
+|-------|-------------|-------------|
+| Avoid Design Slop | Building UI / styles / landing pages | Flags AI-generated design clichés (overused fonts, generic layouts, low-contrast themes, gradient/glow overuse) and pushes for more distinctive design |
+| Motion System | Animation, gestures, transitions, haptics, draggable/throwable UI | Enforces a small vocabulary of motion tokens + interaction primitives so motion feels physical and consistent instead of improvised per-screen |
