@@ -78,6 +78,7 @@ Adapted from [mattpocock/skills `grill-me`](https://github.com/mattpocock/skills
 ## Guidelines
 
 - **Split if too large** — If the resulting plan would be too large for a single reviewable PR (e.g., many files across multiple independent concerns), propose splitting the issue into smaller issues instead of writing one large plan. Explain the proposed split to the user and get confirmation before creating the new issues. This applies in the spec phase too: if brainstorming reveals the issue is actually multiple issues, decompose first.
+- **Motion / animation specs** — If the issue involves motion, gestures, transitions, or haptics, and the project already has a motion foundation (`src/motion/motion-tokens.ts` exists), plan it in that vocabulary: name the tokens and primitives the screen needs (e.g., "`SpringCard`, `threshold` tuned to `weighty`, `success` haptic on commit, list uses `ListItemEntrance`") rather than describing raw animation. Read the `motion-system` skill to choose them. If no motion foundation exists yet, treat building it as its own prerequisite Issue rather than inlining motion setup here.
 - Keep the plan minimal. Do not over-engineer or add unnecessary steps.
 - If the issue is unclear or missing information, always ask the user rather than assuming. In the spec phase use brainstorming's one-question-at-a-time protocol; in the plan phase keep questions tightly scoped to implementation choices.
 - Reference actual file paths discovered during exploration, not guessed paths.

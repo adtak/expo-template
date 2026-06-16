@@ -22,6 +22,7 @@ When invoked, you will receive a GitHub issue number. Follow these steps:
    - Use pnpm (not npx)
    - Use @/ import aliases
    - TypeScript strict mode
+   - For any motion / animation / gesture / haptic work, if `src/motion/motion-tokens.ts` exists, use the motion-system vocabulary (its tokens and primitives) instead of raw `Animated`/`Pressable`/`PanGestureHandler` or literal motion values. The `motion-system` skill and `scripts/check_motion.sh` define the guardrails.
 5. **Run checks** and fix any issues:
    - `pnpm format` (run after editing — Biome may reformat multi-line expressions into single lines)
    - `pnpm expo lint`
