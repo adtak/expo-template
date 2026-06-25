@@ -26,6 +26,6 @@ Pull this into every screen-building Issue's acceptance criteria. These are the 
 ## Motion coherence
 - [ ] One dominant spring character per surface (no `snappy`+`weighty` mix — see principles §3)
 - [ ] No literal durations/easings/springs anywhere in the screen (all from tokens)
-- [ ] `scripts/check_motion.sh` passes
+- [ ] No prohibited patterns in feature code (see `prohibited-patterns.md`)
 
 Mark non-applicable items as N/A explicitly rather than silently skipping — that's how you know they were considered.

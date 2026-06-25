@@ -16,7 +16,7 @@ This skill is **instruction-first**: it does NOT ship primitive source code. It 
 - An Issue touches animation, gesture, transition, haptics, or anything draggable/throwable
 - A screen is described only as a static layout (you must add the motion layer it implies)
 - A new app needs its motion foundation set up (run "Initialization" below)
-- You're reviewing whether code respects the motion system (run `scripts/check_motion.sh`)
+- You're reviewing whether code respects the motion system (scan feature code for the prohibited patterns in `references/prohibited-patterns.md`)
 
 If in doubt, apply it. The failure mode this skill exists to prevent is raw `Animated`/`Pressable`/`PanGestureHandler` code leaking in on a "simple" screen.
 
@@ -28,7 +28,7 @@ These are prohibitions, not suggestions. Prohibitions are easier for an agent to
 
 **Rule 2 — No literal motion values.** Never write a literal `duration: 300`, `damping: 15`, an inline easing curve, or a hardcoded haptic call in feature code. Every motion value comes from `motion-tokens.ts`. A literal is a sign the vocabulary was bypassed.
 
-`scripts/check_motion.sh` greps for violations of both rules so they can fail CI. This is the "AI clarifies, human judges" split: the script catches the mechanical violations; the human judges feel on-device.
+Both rules are mechanically checkable: grep feature code for raw `Animated.*`/`Pressable`/`PanGestureHandler` and for literal `duration:`/`damping:`/`stiffness:` values. `references/prohibited-patterns.md` lists the exact patterns. This is the "AI clarifies, human judges" split: the patterns catch the mechanical violations; the human judges feel on-device.
 
 ## Motion tokens
 
@@ -66,9 +66,9 @@ When setting up a new app's motion foundation, in order:
 1. Create `src/motion/motion-tokens.ts` with the groups above, values tuned to the app's world (a brutalist app wants short durations + sharp easing + stiff springs; read `references/motion-principles.md`).
 2. Build the primitives your MVP needs (not all of them) per the contracts.
 3. Add `src/motion/README.md` listing the vocabulary in use.
-4. Wire `scripts/check_motion.sh` into the lint/CI step.
+4. Add the prohibited-pattern checks (`references/prohibited-patterns.md`) to your review/CI step.
 5. Build ONE screen, then **stop and put it on a real device.** Motion cannot be reviewed any other way. Tune the spring presets once, at the token level, and the fix propagates everywhere.
 
 ## What this skill cannot do
 
-Be honest about the boundary: the skill makes motion *consistent and reviewable*, not automatically *good*. The 60fps "this feels right" judgment is human and on-device only. The skill's job is to make that human judgment cheap to apply (one token edit re-tunes every screen) and hard to bypass (the two rules + the check script). Don't pretend a green check script means the feel is good.
+Be honest about the boundary: the skill makes motion *consistent and reviewable*, not automatically *good*. The 60fps "this feels right" judgment is human and on-device only. The skill's job is to make that human judgment cheap to apply (one token edit re-tunes every screen) and hard to bypass (the two rules + the prohibited-pattern checks). Don't pretend a clean pattern check means the feel is good.
