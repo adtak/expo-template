@@ -2,7 +2,7 @@
 
 Motion-system enforces its vocabulary through prohibitions. These mirror the "Prohibited Patterns" approach used in the DoneOrPay design system: it's far easier for an agent to obey "never do X" than to follow open-ended positive guidance, and prohibitions are mechanically checkable.
 
-`scripts/check_motion.sh` greps for these in feature code (everything outside `src/motion/`).
+Check for these in feature code (everything outside `src/motion/`) — grep is enough.
 
 ## Banned in feature code
 
@@ -16,8 +16,8 @@ Motion-system enforces its vocabulary through prohibitions. These mirror the "Pr
 
 ## Allowed (and required) ONLY inside `src/motion/`
 
-The primitive implementations are where the raw Reanimated / Gesture Handler / Haptics code lives. That's the whole design: concentrate the raw, hard-to-review motion code in a handful of audited primitives, so feature code stays a clean vocabulary. The check script ignores `src/motion/` for this reason.
+The primitive implementations are where the raw Reanimated / Gesture Handler / Haptics code lives. That's the whole design: concentrate the raw, hard-to-review motion code in a handful of audited primitives, so feature code stays a clean vocabulary. Exclude `src/motion/` from the pattern check for this reason.
 
 ## Why grep and not just review
 
-Motion can't be reviewed by reading a diff — you have to feel it on a device. So the division of labor is: the **script** catches the mechanical violations (raw code, literal values) that *can* be caught statically, freeing the **human** review entirely for the thing only a human can do — judging the feel on-device. Don't spend human review attention on "did they use a raw Pressable"; let the script own that.
+Motion can't be reviewed by reading a diff — you have to feel it on a device. So the division of labor is: a **mechanical pattern scan** (grep) catches the violations (raw code, literal values) that *can* be caught statically, freeing the **human** review entirely for the thing only a human can do — judging the feel on-device. Don't spend human review attention on "did they use a raw Pressable"; let the grep own that.
