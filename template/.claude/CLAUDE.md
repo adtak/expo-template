@@ -2,6 +2,10 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Expo SDK — Read the Docs First
+
+**Expo HAS CHANGED.** Before writing any Expo/React Native code, read the exact versioned docs for this project's SDK: https://docs.expo.dev/versions/v56.0.0/. Do not rely on training-data memory of older Expo APIs.
+
 ## Language
 
 - Conversation with the user: **Japanese**
