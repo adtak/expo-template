@@ -7,9 +7,9 @@ const config = {
   moduleNameMapper: {
     "^@/(.*)$": "<rootDir>/$1",
   },
-  setupFilesAfterEnv: [
-    "@testing-library/react-native/build/matchers/extend-expect",
-  ],
+  // @testing-library/react-native (v12.4+) auto-extends `expect` with its
+  // matchers on import, so no setupFilesAfterEnv entry is needed.
+  passWithNoTests: true,
 };
 
 module.exports = config;
