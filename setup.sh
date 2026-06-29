@@ -40,15 +40,21 @@ cp -r "$TEMPLATE_DIR/.vscode/." .vscode/
 cp "$TEMPLATE_DIR/.npmrc" .npmrc
 cp "$TEMPLATE_DIR/biome.json" biome.json
 cp "$TEMPLATE_DIR/jest.config.js" jest.config.js
+# Ship a pre-formatted eslint.config.js. Otherwise `expo lint` generates an
+# unformatted one on first run (in CI, before the Biome format check), and the
+# format check fails on it.
+cp "$TEMPLATE_DIR/eslint.config.js" eslint.config.js
 
 # ── Add devDependencies ────────────────────────────────────────────────────
 
 echo "Installing devDependencies..."
+# jest / @types/jest are pinned to the major version Expo SDK 56 (jest-expo)
+# requires; unpinned, pnpm pulls jest 30 and expo-doctor fails the version check.
 pnpm add -D \
   @biomejs/biome \
   "@testing-library/react-native" \
-  @types/jest \
-  jest \
+  "@types/jest@^29.5.14" \
+  "jest@^29.7.0" \
   jest-expo \
   react-test-renderer \
   expo-build-properties \
