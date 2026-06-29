@@ -21,8 +21,8 @@ A setup script (`setup.sh`) and `template/` directory for bootstrapping new Expo
 2. Copies `template/` files into the current directory
 3. Installs devDependencies via `pnpm add -D`
 4. Adds scripts to `package.json` (`go`, `format`, `format:check`, `test`)
-5. Mutates `app.json`: adds `ios.bundleIdentifier`, `expo-build-properties` plugin, and `extra.eas.projectId` placeholder
-6. Removes `app-example` line from `.gitignore`
+5. Mutates `app.json`: adds `ios.bundleIdentifier`, `expo-build-properties` plugin (iOS `deploymentTarget` 16.4 for SDK 56), and `extra.eas.projectId` placeholder
+6. Removes `create-expo-app` boilerplate: the `app-example` directory and the root `CLAUDE.md` / `AGENTS.md` (agent instructions are consolidated under `.claude/`)
 7. Runs `pnpm format` to format all existing code
 
 ## Modifying the Template

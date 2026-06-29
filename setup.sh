@@ -117,6 +117,11 @@ fs.writeFileSync('app.json', JSON.stringify(configWithSchema, null, 2) + '\n');
 
 rm -rf app-example
 
+# create-expo-app generates root CLAUDE.md (@AGENTS.md) and AGENTS.md. This
+# template consolidates all agent instructions under .claude/CLAUDE.md (which
+# already embeds the Expo SDK versioned-docs guidance), so remove the roots.
+rm -f CLAUDE.md AGENTS.md
+
 # ── Format existing code ───────────────────────────────────────────────────
 
 echo "Formatting code with Biome..."
