@@ -99,7 +99,7 @@ const hasBuildProps = expo.plugins.some(
 if (!hasBuildProps) {
   expo.plugins.push([
     'expo-build-properties',
-    { ios: { deploymentTarget: '15.5' } },
+    { ios: { deploymentTarget: '16.4' } },
   ]);
 }
 
